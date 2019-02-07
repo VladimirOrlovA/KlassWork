@@ -92,27 +92,66 @@ void printArray(int a[], int n)
 
 }
 
+//26.	Напишите функцию, которая принимает выражение в виде строки и проверяет, правильно ли расставлены в нем скобки. 
+//		А) *Скобки могут быть только круглые «(» «)».
+
+
+bool checkBrackets(char c[])
+{
+	int k = 0;
+	for (int i = 0; i < strlen(c); i++)
+	{
+		if (c[i] == '(' || c[i] == '[') k++;
+		else if (c[i] == ')' || c[i] == ']') k--;
+		if (k < 0) return false;
+	}
+	if (k == 0) return true;
+	else return false;
+}
+
+
+//27.	**Напишите функцию, которая принимает массив, количество элементов, тип сортировки(пузырьком, выбором и т.д. - строка)
+//		и порядок сортировки(по убыванию, по возрастанию – логическая переменная).Функция сортирует массив.Реализовать перегрузки для целых и вещественных чисел.
+
+void choice(int arr[], int n)
+{
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+			if (arr[i] > arr[j])
+			{
+				int c = arr[j];
+				arr[j] = arr[i];
+				arr[i] = c;
+			}
+
+
+}
+
+
 int main()
 {
-	int arr[5] = { 0 };
+	int arr[10] = { 0 };
 
 	srand(time(NULL));
 	
-	fillArray(arr, 5);
-	printArray(arr, 5);
-	bubble(arr, 5);
-	printArray(arr, 5);
-	cout << binarySearch(arr, 5, 5)<<endl;
+	fillArray(arr, 10);
+	printArray(arr, 10);
+	//bubble(arr, 5);
+	choice(arr, 10);
+	printArray(arr, 10);
 
-	char c[50] = "Hello";  //  H e l l o \0   - \0 индикаор конца строки
+	//cout << binarySearch(arr, 5, 5)<<endl;*/
 
-	cin >> c;					// считывает все символы только до пробела например The Example - введет только The
+	//char c[50] = "[(Hello(]";  //  H e l l o \0   - \0 индикаор конца строки
+
+	//cin >> c;					// считывает все символы только до пробела например The Example - введет только The
 	
 	//cout << c << endl;
 
-	for (int i = 0; i < strlen(c); i++)  // strlen(c) - определяет кол-во символов в массиве, конец определяет по /0
-		cout << c[i] << endl;
+	//for (int i = 0; i < strlen(c); i++)  // strlen(c) - определяет кол-во символов в массиве, конец определяет по /0
+		//cout << c[i] << endl;
 
+	//cout << checkBrackets(c) << endl;
 
 	system("pause");
 
