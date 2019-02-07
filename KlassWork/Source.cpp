@@ -113,7 +113,7 @@ bool checkBrackets(char c[])
 //27.	**Напишите функцию, которая принимает массив, количество элементов, тип сортировки(пузырьком, выбором и т.д. - строка)
 //		и порядок сортировки(по убыванию, по возрастанию – логическая переменная).Функция сортирует массив.Реализовать перегрузки для целых и вещественных чисел.
 
-void choice(int arr[], int n)
+void choice(int arr[], int n)    // сортировка вставкой вариант 1 более эфективн
 {
 	int count = 0;
 	for (int i = 0; i < n; i++)
@@ -128,7 +128,7 @@ void choice(int arr[], int n)
 	cout << count<<endl;
 }
 
-void insertionSort(int arr[], int size)
+void insertionSort(int arr[], int size)  // // сортировка вставкой вариант 2
 {
 	int count = 0;
 	for (int i = 0; i < size; i++)
@@ -144,6 +144,27 @@ void insertionSort(int arr[], int size)
 	cout << count<<endl;
 }
 
+
+void selectionSort(int arr[], int n)
+{
+	int min, min_pos;
+
+	for (int i = 0; i < n - 1; i++)
+	{
+		min = INT_MAX;
+		for (int j = i; j < n; j++)
+			if (arr[j] < min)
+			{
+				min = arr[j];
+				min_pos = j;
+			}
+		swap(arr[i], arr[min_pos]);
+	}
+
+
+}
+
+
 void copyArray(int arr[], int b[], int size)
 {
 	for (int i = 0; i < size; i++)
@@ -154,20 +175,26 @@ void copyArray(int arr[], int b[], int size)
 
 int main()
 {
-	int arr[10] = { 0 };
-	int b[10] = { 0 };
+	int const x=10;
+	
+	int arr[x] = { 0 };
+	int b[x] = { 0 };
+
+	
 
 	srand(time(NULL));
 	
-	fillArray(arr, 10);
-	copyArray(arr, b, 10);
+	fillArray(arr, x);
+	copyArray(arr, b, x);
 
-	printArray(arr, 10);
+	printArray(arr, x);
 	//bubble(arr, 5);
-	choice(arr, 10);
-	printArray(arr, 10);
-	insertionSort(b, 10);
-	printArray(arr, 10);
+	//choice(arr, x);
+	//printArray(arr, x);
+	//insertionSort(b, x);
+	//printArray(arr, x);
+	selectionSort(arr, x);
+	printArray(arr, x);
 
 	//cout << binarySearch(arr, 5, 5)<<endl;*/
 
