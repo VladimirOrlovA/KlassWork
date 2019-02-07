@@ -115,6 +115,7 @@ bool checkBrackets(char c[])
 
 void choice(int arr[], int n)
 {
+	int count = 0;
 	for (int i = 0; i < n; i++)
 		for (int j = i + 1; j < n; j++)
 			if (arr[i] > arr[j])
@@ -122,22 +123,50 @@ void choice(int arr[], int n)
 				int c = arr[j];
 				arr[j] = arr[i];
 				arr[i] = c;
+				count++;
 			}
-
-
+	cout << count<<endl;
 }
 
+void insertionSort(int arr[], int size)
+{
+	int count = 0;
+	for (int i = 0; i < size; i++)
+		for (int j = i; j > 0; j--)
+		{
+			count++;
+			if (arr[j] < arr[j - 1])
+				swap(arr[j], arr[j - 1]);
+
+			else
+				break;
+		}
+	cout << count<<endl;
+}
+
+void copyArray(int arr[], int b[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		b[i] = arr[i];
+	}
+}
 
 int main()
 {
 	int arr[10] = { 0 };
+	int b[10] = { 0 };
 
 	srand(time(NULL));
 	
 	fillArray(arr, 10);
+	copyArray(arr, b, 10);
+
 	printArray(arr, 10);
 	//bubble(arr, 5);
 	choice(arr, 10);
+	printArray(arr, 10);
+	insertionSort(b, 10);
 	printArray(arr, 10);
 
 	//cout << binarySearch(arr, 5, 5)<<endl;*/
