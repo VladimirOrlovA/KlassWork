@@ -2,6 +2,7 @@
 #include<iomanip>
 #include<cstdlib>
 #include<ctime>
+#include<locale.h>
 
 using namespace std;
 
@@ -128,7 +129,7 @@ void choice(int arr[], int n)    // сортировка вставкой вариант 1 более эфективн
 	cout << count<<endl;
 }
 
-void insertionSort(int arr[], int size)  // // сортировка вставкой вариант 2
+void insertionSort(int arr[], int size)  // сортировка вставкой вариант 2
 {
 	int count = 0;
 	for (int i = 0; i < size; i++)
@@ -173,9 +174,27 @@ void copyArray(int arr[], int b[], int size)
 	}
 }
 
+void rectangleArea(int a, int b)
+{
+	int S;
+	cout << "Введите сторону прямоуголиника a и b ->";
+	cin >> a >> b;
+	S = a*b;
+	cout << "Площадь прямоугольника =" << S << endl << endl;
+}
+
+void figure1(int n=7, char ch = '*', int type = 0);
+
+void fillDiagonal(int a[][30], int n);
+
+void printArray2(int a[30][30], int n, int m);
+
+
 int main()
 {
-	int const x=10;
+	setlocale(LC_ALL, "");
+	
+	/*int const x=10;
 	
 	int arr[x] = { 0 };
 	int b[x] = { 0 };
@@ -194,7 +213,7 @@ int main()
 	//insertionSort(b, x);
 	//printArray(arr, x);
 	selectionSort(arr, x);
-	printArray(arr, x);
+	printArray(arr, x); */
 
 	//cout << binarySearch(arr, 5, 5)<<endl;*/
 
@@ -209,7 +228,88 @@ int main()
 
 	//cout << checkBrackets(c) << endl;
 
+	//int x=0, y=0;
+
+	//rectangleArea(x, y);
+
+
+	// 4.	Написать функции и протестировать их в основной программе. Функции печатают фигуры и используют параметры по умолчанию. 
+	// Параметры по умолчанию определяют, каким символом печатается фигура и является ли она заполненной или печатается только рамка фигуры.
+
+	figure1();
+	figure1(7);
+	figure1(7, '+');
+	figure1(7, '+', 1);
+
+	int a[30][30];
+	fillDiagonal(a, 7);
+	printArray2(a, 7, 7);
+
 	system("pause");
 
-	return 0;
+}
+
+void figure1(int n, char ch, int type)
+
+// 4.	Написать функции и протестировать их в основной программе. Функции печатают фигуры и используют параметры по умолчанию. 
+// Параметры по умолчанию определяют, каким символом печатается фигура и является ли она заполненной или печатается только рамка фигуры.
+
+
+{
+	if (type == 0)	// полная фигура
+	{
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = n - 1 - i; j < n; j++)
+			{
+				cout << ch;
+			}
+			cout << endl;
+		}				
+	}
+	else			// пустая фигура
+	{
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if (i == n - 1 || j == 0 || i == j) cout << ch;
+				else cout << " ";
+			}
+			cout << endl;
+		}
+	}
+}
+
+
+void fillDiagonal(int a[][30], int n, int m) 
+{
+	//7.	Написать функцию, которая заполняет переданную ей квадратную матрицу по правилу : диагональные элементы ровни 1, другие элементы ровни 0. 
+	//	Использовать функцию для заполнения матрицы размером 7хх.7.
+	
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (i == j || i == n - 1 - j)
+				a[i][j] = 1;
+			else
+				a[i][j] = 0;
+		}
+	}
+
+
+}
+
+
+void printArray2(int a[][30], int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cout << a[i][j] << "\t";
+		}
+		cout << endl;
+	}
 }
