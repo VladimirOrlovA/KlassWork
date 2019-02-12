@@ -357,7 +357,7 @@ void sortArray (T arr[][30], int n, int m, char sorting_order)
 		for (int i = 0; i < n; i++)
 			for (int pass = 0; pass < m - 1; pass++)
 			{
-				for (int j = 0; j < m - 1; j++)
+				for (int j = i; j < m - 1; j++)
 				{
 					if (arr[i][j] > arr[i][j + 1])
 						swap(arr[i][j], arr[i][j + 1]); // меняем местами элементы массива
@@ -370,7 +370,7 @@ void sortArray (T arr[][30], int n, int m, char sorting_order)
 		for (int i = 0; i < n; i++)
 			for (int pass = 0; pass < m - 1; pass++)
 			{
-				for (int j = 0; j < m - 1; j++)
+				for (int j = i; j < m - 1; j++)
 				{
 					if (arr[i][j] < arr[i][j + 1])
 						swap(arr[i][j], arr[i][j + 1]);
