@@ -187,7 +187,14 @@ void figure1(int n=7, char ch = '*', int type = 0);
 
 void fillDiagonal(int a[][30], int n);
 
-void printArray2(int a[30][30], int n, int m);
+template<typename T>
+void printArray2(T a[30][30], int n, int m);
+
+template<typename T>
+void sortArray(T arr[][30], int n, int m, char sorting_order = 'a');
+
+template<typename T>
+void fillArray2(T a[][30], int n);
 
 
 int main()
@@ -236,14 +243,25 @@ int main()
 	// 4.	Написать функции и протестировать их в основной программе. Функции печатают фигуры и используют параметры по умолчанию. 
 	// Параметры по умолчанию определяют, каким символом печатается фигура и является ли она заполненной или печатается только рамка фигуры.
 
-	figure1();
+	/*figure1();
 	figure1(7);
 	figure1(7, '+');
-	figure1(7, '+', 1);
+	figure1(7, '+', 1);*/
+
+	
 
 	int a[30][30];
-	fillDiagonal(a, 7);
+	//float a[30][30];	
+	//char a[30][30];
+	
+	
+
+	//fillDiagonal(a, 7);
+	fillArray2(a, 7);
 	printArray2(a, 7, 7);
+	sortArray(a, 7, 7, 'a');
+	printArray2(a, 7, 7);
+
 
 	system("pause");
 
@@ -282,7 +300,7 @@ void figure1(int n, char ch, int type)
 }
 
 
-void fillDiagonal(int a[][30], int n, int m) 
+void fillDiagonal(int a[][30], int n) 
 {
 	//7.	Написать функцию, которая заполняет переданную ей квадратную матрицу по правилу : диагональные элементы ровни 1, другие элементы ровни 0. 
 	//	Использовать функцию для заполнения матрицы размером 7хх.7.
@@ -302,7 +320,22 @@ void fillDiagonal(int a[][30], int n, int m)
 }
 
 
-void printArray2(int a[][30], int n, int m)
+template<typename T>
+void fillArray2(T a[][30], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			a[i][j] =rand() % 9;
+		}
+	}
+	cout << endl;
+}
+
+
+template<typename T>
+void printArray2(T a[][30], int n, int m)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -312,4 +345,37 @@ void printArray2(int a[][30], int n, int m)
 		}
 		cout << endl;
 	}
+	cout << endl;
+}
+
+
+template<typename T>
+void sortArray (T arr[][30], int n, int m, char sorting_order)
+{
+	if (sorting_order == 'a')
+	{
+		for (int i = 0; i < n; i++)
+			for (int pass = 0; pass < m - 1; pass++)
+			{
+				for (int j = 0; j < m - 1; j++)
+				{
+					if (arr[i][j] > arr[i][j + 1])
+						swap(arr[i][j], arr[i][j + 1]); // меняем местами элементы массива
+				}
+			}
+	}
+
+	if (sorting_order == 'd')
+	{
+		for (int i = 0; i < n; i++)
+			for (int pass = 0; pass < m - 1; pass++)
+			{
+				for (int j = 0; j < m - 1; j++)
+				{
+					if (arr[i][j] < arr[i][j + 1])
+						swap(arr[i][j], arr[i][j + 1]);
+				}
+			}
+	}
+	cout << endl;
 }
