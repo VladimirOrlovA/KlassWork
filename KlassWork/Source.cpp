@@ -197,14 +197,134 @@ template<typename T>
 void fillArray2(T a[][30], int n);
 
 
+int recPower(double x, int y)
+{
+	if (y == 0) return 1;
+	return x * recPower(x, y - 1);
+}
+
+
+
+int factorial(int n)
+{
+	if (n == 1) return 1;
+	return n * factorial(n - 1);
+}
+
+void print(int n)
+{
+	if (n == 0) return;
+	char c;
+	cin >> c;
+	print(n - 1);
+	cout << c << endl;
+}
+
+int fib(int n)
+{
+	if (n == 0 || n == 1) return 1;
+	cout << "fib" << n << endl;
+	return (fib(n - 1) + fib(n - 2));
+}
+
+//48.	 *Написать рекурсивную функцию, которая выводит N звезд в ряд, число N задает пользователь.Проиллюстрируйте работу функции примером.
+
+void star(int n)
+{
+	if (n == 0) return;
+	star(n-1);
+	cout << '*';
+}
+
+//49.	*Написать рекурсивную функцию, которая вычисляет факториал числа. Проиллюстрируйте работу функции примером.
+
+void factorial1(int n)
+{
+	if (n == 1) return;
+	cout<< n * factorial(n - 1)<<endl;
+}
+
+//50.	*Написать рекурсивную функцию, которая вычисляет сумму всех чисел в диапазоне от a до b.Пользователь вводит a и  b.Проиллюстрируйте работу функции примером.
+
+int sumAB(int a, int b)
+{
+	static int tmp = a;
+	if (a == b) return -tmp;   // для вывода промежуточного значения
+	return a + sumAB(a + 1, b);
+} 
+
+// Рекурсивная функция выполняющая суммирование элементов массива
+
+int sumArray(int arr[], int a)
+{
+	if (a == 1) return arr[a - 1];
+	return arr[a - 1] + sumArray(arr, a - 1);
+}
+
+
+// Рекурсивная функция выполняющая поиск макс элемента массива
+
+int maxElemArray(int arr[], int a)
+{
+	static int max = arr[0];
+	if (a == 1) 
+		return arr[a - 1];
+	if (arr[a - 1] > max) 
+		max = arr[a - 1];
+	maxElemArray(arr, a - 1);
+	return max;
+}
+
+
+
+int maxArrayLH(int a[], int low, int high)
+{
+	if (low == high)
+		return a[low];
+	maxArrayLH(a, low, (low + high) / 2;
+	return;
+}
+
+
+//51.	**Напишите рекурсивную функцию, которая принимает одномерный массив из 100 целых чисел заполненных случайным образом и находит позицию,
+//с которой начинается последовательность из 10 чисел, сумма которых минимальна.
+
+
+
+
+void f()
+{
+
+}
+
 int main()
 {
 	setlocale(LC_ALL, "");
 	
+	const int a = 3;
+	int arr[a] = { 0 };
+
+	//int x, y;
+	//cin >> x>>y;
+	
+	fillArray(arr, a);
+	printArray(arr, a);
+	
+	cout<<sumArray(arr, a);
+	cout << endl;
+
+	cout << maxElemArray(arr, a);
+	cout << endl;
+
+	//cout<<sumArray(x,y);
+	//cout << endl;
+
+	//print(x);
+	//cout << factorial(x) << endl;
+
 	/*int const x=10;
 	
-	int arr[x] = { 0 };
-	int b[x] = { 0 };
+
 
 	
 
@@ -248,7 +368,7 @@ int main()
 	figure1(7, '+');
 	figure1(7, '+', 1);*/
 
-	
+	/*
 
 	int a[30][30];
 	//float a[30][30];	
@@ -261,6 +381,7 @@ int main()
 	printArray2(a, 7, 7);
 	sortArray(a, 7, 7, 'a');
 	printArray2(a, 7, 7);
+	*/
 
 
 	system("pause");
@@ -380,6 +501,10 @@ void sortArray (T arr[][30], int n, int m, char sorting_order)
 	cout << endl;
 }
 
+//47.	*Написать рекурсивную функцию, которая вычисляет x*y с помощью сложения.Проиллюстрируйте работу функции примером.
+
+
+
 //7.	Написать функцию, которая заполняет переданную ей квадратную матрицу по правилу : диагональные элементы ровни 1, другие элементы ровни 0. Использовать функцию для заполнения матрицы размером 7хх.7.
 //
 //8.	Написать функцию, которая получает матрицу и номер столбца и меняет знак элементов этого столбца на противоположный.Использовать функцию для преобразования некоторой действительной матрицы размером 4х5.
@@ -387,3 +512,6 @@ void sortArray (T arr[][30], int n, int m, char sorting_order)
 //9.	Составить функцию, в которой производится суммирование наибольших элементов в каждой нечетной строке матрицы А и наименьших элементов из каждой строки с четным номером.
 //
 //10.	Написать функцию, которая определяет индекс первого отрицательного элемента переданного функции массива Если такого элемента в массиве нет, то считать номер равным –1.
+
+
+
