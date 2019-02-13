@@ -281,8 +281,10 @@ int maxArrayLH(int a[], int low, int high)
 {
 	if (low == high)
 		return a[low];
-	maxArrayLH(a, low, (low + high) / 2;
-	return;
+	int middle = (low + high) / 2;
+	int right=maxArrayLH(a, low, middle) / 2;
+	int left = maxArrayLH(a, middle + 1, high) / 2;
+	return right < left ? right : left;
 }
 
 
