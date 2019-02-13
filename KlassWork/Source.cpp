@@ -305,7 +305,7 @@ int main()
 	
 	const int a = 3;
 	int arr[a] = { 0 };
-
+	int low, high;
 	//int x, y;
 	//cin >> x>>y;
 	
@@ -317,6 +317,8 @@ int main()
 
 	cout << maxElemArray(arr, a);
 	cout << endl;
+
+	cout << maxArrayLH(a, low, high);
 
 	//cout<<sumArray(x,y);
 	//cout << endl;
