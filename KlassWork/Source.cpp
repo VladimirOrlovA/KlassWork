@@ -188,7 +188,7 @@ void figure1(int n=7, char ch = '*', int type = 0);
 void fillDiagonal(int a[][30], int n);
 
 template<typename T>
-void printArray2(T a[30][30], int n, int m);
+void printArray2(T a[][30], int n, int m);
 
 template<typename T>
 void sortArray(T arr[][30], int n, int m, char sorting_order = 'a');
@@ -292,33 +292,140 @@ int maxArrayLH(int a[], int low, int high)
 //с которой начинается последовательность из 10 чисел, сумма которых минимальна.
 
 
-
-
-void f()
+void find(int arr[])
 {
+	static int min = 100;
 
+	
+
+}
+
+
+
+// вывод елки
+
+void elka(int h)
+{
+	if (h == 0) return;
+	static int n = 1;
+	for (int i = 1; i < h; i++)
+		cout << ' ';
+	for (int i = 0; i < n; i++)
+		cout << '*';
+	cout << endl;
+
+	n += 2;
+	elka(h - 1);
+}
+
+
+// Вывод элементов массива в обратном порядке
+
+void reverseArray(int arr[], int a)
+{
+	static int tmp = a;
+	static int i = 0;
+	if (i == tmp / 2)
+		return;
+	else
+		swap(arr[i], arr[a - 1]);  // поменять элементы местами
+		i++;
+	reverseArray(arr, a - 1);
+}
+
+
+int n = 4;
+int m = 5;
+int a[4][30]=
+{
+	{1,0,0,0,0},
+	{1,0,1,0,1},
+	{1,0,0,0,0},
+	{1,1,1,1,1}
+};
+
+int cells(int i, int j)  // проверяем зараженные клетки все элементы куда прошло заражение
+{
+	static int sum = 0;
+	if (i >= 0 && i < n && j >= 0 && j < m)
+	{
+		if (a[i][j] == 1)
+		{
+			a[i][j] = 2;
+			sum++;
+			if (a[i - 1][j - 1] == 1) cells(i - 1, j - 1);
+			if (a[i - 1][j + 1] == 1) cells(i - 1, j + 1);
+			if (a[i + 1][j - 1] == 1) cells(i + 1, j - 1);
+			if (a[i + 1][j + 1] == 1) cells(i + 1, j + 1);
+
+			if (a[i - 1][j] == 1) cells(i - 1, j);
+			if (a[i + 1][j] == 1) cells(i + 1, j);
+
+			if (a[i][j - 1] == 1) cells(i, j - 1);
+			if (a[i][j + 1] == 1) cells(i, j + 1);
+		}
+	}
+	return sum;
+}
+
+
+int maze(int i, int j)  // выход из лабиринта
+{
+	static  bool flag = 0;
+	if (i == n - 1 && j == m - 1)
+	{
+		flag = true;
+		return true;
+	}
+		
+	if (i >= 0 && i < n && j >= 0 && j < m)
+	{
+		if (a[i][j] == 1)
+		{
+			a[i][j] = 2;
+			
+			if (a[i - 1][j] == 1) maze(i - 1, j);
+			if (a[i + 1][j] == 1) maze(i + 1, j);
+
+			if (a[i][j - 1] == 1) maze(i, j - 1);
+			if (a[i][j + 1] == 1) maze(i, j + 1);
+		}
+	}
+	return flag;
 }
 
 int main()
 {
 	setlocale(LC_ALL, "");
 	
-	const int a = 3;
+	const int a = 100;
 	int arr[a] = { 0 };
-	int low, high;
+	//int low, high;
 	//int x, y;
 	//cin >> x>>y;
-	
-	fillArray(arr, a);
-	printArray(arr, a);
-	
-	cout<<sumArray(arr, a);
-	cout << endl;
 
-	cout << maxElemArray(arr, a);
-	cout << endl;
+	elka(5);
+	
+	//fillArray(arr, a);
+	//printArray(arr, a);
+	
+	//cout<<sumArray(arr, a);
+	//cout << endl;
 
-	cout << maxArrayLH(a, low, high);
+	//cout << maxElemArray(arr, a);
+	//cout << endl;
+
+	//reverseArray(arr, a);
+	//cout << endl;
+
+	//printArray(arr, a);
+
+
+	//printArray2(::a, 4, 5);
+
+	//cout << maze(0,0)<<endl;
+
+	//cout << maxArrayLH(a, low, high);
 
 	//cout<<sumArray(x,y);
 	//cout << endl;
